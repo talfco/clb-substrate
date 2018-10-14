@@ -1,12 +1,12 @@
 # README
 
-This is a Polkadot Validator Node Docker Image base on Ubuntu 16.04 (Jelastic PaaS ready)
+This is a Polkadot Validator Node Docker Image base on Ubuntu 16.04 (Jelastic PaaS ready) for the POC-3 "BBQ Birch Testnet"
 
 ## Docker Build Commands
 
- * docker build -t=talfco/clb-polkadot:v0.2 .
- * docker run --rm -it talfco/clb-polkadot:v0.2 polkadot
- * docker push talfco/clb-plkadot:v0.2
+ * docker build -t=talfco/clb-substrate:latest .
+ * docker run --rm -it talfco/clb-substrate:latest substrate
+ * docker push talfco/clb-substrate:latest
  
  
  
