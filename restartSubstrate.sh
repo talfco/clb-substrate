@@ -5,7 +5,7 @@ timestamp()
 }
 
 
-a=$(/bin/netstat -tulpn | awk '{print $7}' |  grep polkadot | wc -l )
+a=$(/bin/netstat -tulpn | awk '{print $7}' |  grep substrate | wc -l )
 if test $a = "0"
 then
  echo "$(timestamp): Polkadot Validator Down" >> /var/log/polkamonitor.log
