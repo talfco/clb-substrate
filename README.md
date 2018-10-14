@@ -11,7 +11,7 @@ This is a Polkadot Validator Node Docker Image base on Ubuntu 16.04 (Jelastic Pa
  
  
 ## Miscellaneous 
-* Polkadot DB Location: `/.local/share/Polkadot/chains#` will be mapped to the `/data`
+* Polkadot DB Location: `/root/.local/share/Substrate/chains` will be mapped to the `/data`
  
  
  
