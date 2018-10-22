@@ -13,7 +13,7 @@ then
 fi
 
 # Every Minute a check, add the following cron-job
-# * * * * *   /root/polkamonitor.sh  > /dev/null 2>&1
+# * * * * *   /root/restartSubstrate.sh  > /dev/null 2>&1
 # crontab -e
 # grep cron /var/log/syslog
 
