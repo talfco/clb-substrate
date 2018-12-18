@@ -4,13 +4,13 @@ LABEL maintainer "felix@cloudburo.net"
 # Install the prerequisite for substrate
 RUN apt-get update && \
 	apt-get upgrade -y && \
-	apt-get install -y make cmake pkg-config libssl1.0.0  libssl-dev git curl
+	apt-get install -y make cmake pkg-config libssl1.0.0  libssl-dev git curl clang libclang-dev
 
 # Install substrate from source
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
     $HOME/.cargo/bin/rustup update && \
 	export PATH=$PATH:$HOME/.cargo/bin && \
-	git clone https://github.com/paritytech/substrate.git && \
+	git clone -b "v0.9.0" https://github.com/paritytech/substrate.git && \
     cd substrate/ && \
     ./scripts/init.sh && \
     ./scripts/build.sh && \
