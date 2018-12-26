@@ -20,8 +20,7 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
     cargo build --release
 
 # Copy the program over and prepare chain directory
-RUN cp /substrate/target/release/substrate /usr/local/bin/ && \
-    mkdir /data
+RUN cp /substrate/target/release/substrate /usr/local/bin/ 
 
 # Get rid of all the build stuff
 RUN rm -rf /substrate/ && \

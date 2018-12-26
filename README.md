@@ -6,7 +6,7 @@ This is a Polkadot Validator Node Docker Image base on Ubuntu 16.04 (Jelastic Pa
 ## Docker Build Commands
 
  * docker build -t=talfco/clb-substrate:latest .
- * docker run --rm -it talfco/clb-substrate:latest 
+ * docker run --rm -it  --mount source=data,destination=/home/felix/data talfco/clb-substrate:latest
  * docker push talfco/clb-substrate:latest
  
 ## Miscellaneous 
