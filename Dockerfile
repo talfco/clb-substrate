@@ -1,20 +1,32 @@
 FROM ubuntu:16.04
-LABEL maintainer "felix@cloudburo.net"
+LABEL maintainer 'felix@cloudburo.net'
 
 # Install the prerequisite for substrate
 RUN apt-get update && \
 	apt-get upgrade -y && \
 	apt-get install -y make cmake pkg-config libssl1.0.0  libssl-dev git curl clang libclang-dev
 
-# Install substrate from source
+# Get Substrate built
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
-    $HOME/.cargo/bin/rustup update && \
-	export PATH=$PATH:$HOME/.cargo/bin && \
-	git clone -b "v0.9.0" https://github.com/paritytech/substrate.git && \
+    export PATH=$PATH:$HOME/.cargo/bin && \
+    . $HOME/.cargo/env  && \
+    rustup update nightly && \
+    rustup target add wasm32-unknown-unknown --toolchain nightly && \
+    rustup update stable && \
+    cargo install --git https://github.com/alexcrichton/wasm-gc && \
+    git clone -b "v0.9.1" https://github.com/paritytech/substrate.git && \
     cd substrate/ && \
-    ./scripts/init.sh && \
     ./scripts/build.sh && \
     cargo build --release
+
+# Copy the program over and prepare chain directory
+RUN cp /substrate/target/release/substrate /usr/local/bin/ && \
+    mkdir /data
+
+# Get rid of all the build stuff
+RUN rm -rf /substrate/ && \
+    rm -rf /root/.cargo/ && \
+    rm -rf /root/.rustup
 
 # Add artefact
 ADD monitorValidator.sh /root
@@ -42,6 +54,6 @@ RUN apt-get update && \
 #    service sshguard restart
 
 EXPOSE 30333 9933 9944
-VOLUME ["/root/.local/share/Substrate/chains"]
+VOLUME ["/data"]
 
-CMD ["./substrate/target/release/substrate"]
+CMD ["substrate --base-path /data"]
