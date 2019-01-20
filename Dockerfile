@@ -14,7 +14,7 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y && \
     rustup target add wasm32-unknown-unknown --toolchain nightly && \
     rustup update stable && \
     cargo install --git https://github.com/alexcrichton/wasm-gc && \
-    git clone -b "v0.9.1" https://github.com/paritytech/substrate.git && \
+    git clone -b "v0.9.2" https://github.com/paritytech/substrate.git && \
     cd substrate/ && \
     ./scripts/build.sh && \
     cargo build --release
